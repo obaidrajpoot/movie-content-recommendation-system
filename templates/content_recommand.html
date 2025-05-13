@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Recommender</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    .search-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      border: none;
+      background-color: #FFD700;
+      color: #121212;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ffae00;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 50px auto;
+    }
+    .movie-card {
+      background-color: #1e1e1e;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      display: flex;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .movie-card img {
+      width: 180px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+    .details {
+      flex: 1;
+    }
+    .details h2 {
+      margin-top: 0;
+      color: #FFD700;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="search-container">
+    <h1>🎬 Movie Recommendation System</h1>
+    <form action="/movie_recomand" method="POST">
+      <input type="text" name="movie" placeholder="Enter a movie name" required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  {% if data %}
+  <div class="container">
+    <h2>Recommended Movies</h2>
+    {% for movie in data %}
+      <div class="movie-card">
+        <img src="{{ movie.image }}" alt="{{ movie.title }}">
+        <div class="details">
+          <h2>{{ movie.title }}</h2>
+          <p><strong>Overview:</strong> {{ movie.overview }}</p>
+          <p class="meta">⭐ Rating: {{ movie.vote_average }} | Votes: {{ movie.vote_count }}</p>
+          <p class="meta">📅 Released: {{ movie.release_date }} | 🕒 Runtime: {{ movie.runtime }} min</p>
+          <p class="meta">💰 Revenue: ${{ movie.revenue }} | Budget: ${{ movie.budget }}</p>
+          <p class="meta">🌐 Language: {{ movie.original_language }} | 🔥 Popularity: {{ movie.popularity }}</p>
+          <p class="meta">🔞 Adult: {{ 'Yes' if movie.adult else 'No' }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</body>
+</html>
