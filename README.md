@@ -2,6 +2,12 @@
   To run the backend code must install these libraries available in requirement.txt by running this code in vscode terminal
   
       pip install -r requirements.txt
+**DATASET :**
+  You can download the dataset of TMDB from here 
+📌  
+      
+      https://www.kaggle.com/datasets/asaniczka/tmdb-movies-dataset-2023-930k-movies
+
          
 **HTML PAGES**
 <ul>
